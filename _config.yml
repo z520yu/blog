@@ -1,13 +1,14 @@
-title: 我的个人博客
+title: 羊仔AI探索
 email: your-email@example.com
 description: >-
-  这是我的个人博客，在这里我会分享我的想法和经验。
+  央企程序员，AI探索者
 baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "https://z520yu.github.io" # the base hostname & protocol for your site
 github_username: z520yu
+author: 羊仔AI探索
 
 # 主题设置
-theme: jekyll-theme-minimal
+theme: minima
 
 # 布局设置
 permalink: /:year/:month/:day/:title/
@@ -25,8 +26,14 @@ navigation:
     url: /
   - title: 文章
     url: /posts/
+  - title: 分类
+    url: /categories/
+  - title: 标签
+    url: /tags/
   - title: 关于
     url: /about/
+  - title: 搜索
+    url: /search/
 
 # 构建设置
 markdown: kramdown

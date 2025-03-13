@@ -1,10 +1,309 @@
 @import "minimal";
 
-// 自定义样式
+// 变量
+$primary-color: #ff8c8c;
+$secondary-color: #ffa8a8;
+$text-color: #333;
+$light-gray: #f5f5f5;
+$medium-gray: #e0e0e0;
+$dark-gray: #828282;
+$sidebar-width: 250px;
+$container-max-width: 1200px;
+
+// 全局样式
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: $text-color;
+  background-color: $light-gray;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: color 0.3s;
+  
+  &:hover {
+    color: darken($primary-color, 10%);
+  }
+}
+
+// 页面容器
+.page-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+// 侧边栏
+.sidebar {
+  width: $sidebar-width;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  overflow-y: auto;
+  
+  .profile {
+    padding: 30px 20px;
+    text-align: center;
+    
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      overflow: hidden;
+      border: 3px solid $primary-color;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    .site-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .site-description {
+      font-size: 14px;
+      color: $dark-gray;
+    }
+  }
+  
+  .main-nav {
+    padding: 0 10px 30px;
+    
+    ul {
+      list-style: none;
+      
+      li {
+        margin-bottom: 10px;
+        
+        a {
+          display: block;
+          padding: 8px 15px;
+          color: $text-color;
+          border-radius: 5px;
+          transition: all 0.3s;
+          
+          &:hover {
+            background-color: rgba($primary-color, 0.1);
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 内容区域
+.content-container {
+  flex: 1;
+  margin-left: $sidebar-width;
+  max-width: calc(100% - #{$sidebar-width});
+  
+  .banner {
+    height: 300px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .main-content {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 30px;
+  }
+}
+
+// 文章卡片
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.post-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  padding: 20px;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post-category {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: $primary-color;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+  }
+  
+  .post-title {
+    font-size: 22px;
+    margin: 25px 0 15px;
+    font-weight: 600;
+    
+    a {
+      color: $text-color;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  .post-excerpt {
+    color: $dark-gray;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .post-meta {
+    color: $dark-gray;
+    font-size: 12px;
+    
+    span {
+      margin-right: 15px;
+      
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+// 分页
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  
+  a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+}
+
+// 文章页面
+article.post {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  
+  .post-header {
+    margin-bottom: 30px;
+    
+    .post-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 20px 0;
+    }
+    
+    .post-meta {
+      color: $dark-gray;
+      font-size: 14px;
+      
+      span {
+        margin-right: 20px;
+        
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  
+  .post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid $medium-gray;
+    
+    a {
+      max-width: 45%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+// 页脚
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  color: $dark-gray;
+  font-size: 14px;
+}
+
+// 响应式
+@media (max-width: 768px) {
+  .page-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    position: relative;
+    height: auto;
+  }
+  
+  .content-container {
+    margin-left: 0;
+    max-width: 100%;
+  }
+  
+  .posts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+// 样式重置
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p, ul, ol {
+  margin-bottom: 20px;
 }
 
 .site-header {

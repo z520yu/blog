@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "zh" }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+  <div class="page-container">
+    <div class="sidebar">
+      <div class="profile">
+        <div class="avatar">
+          <img src="{{ "/assets/images/avatar.png" | relative_url }}" alt="{{ site.author }}">
+        </div>
+        <h1 class="site-title">{{ site.title }}</h1>
+        <p class="site-description">{{ site.description }}</p>
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="{{ "/" | relative_url }}">首页</a></li>
+          <li><a href="{{ "/posts" | relative_url }}">文章</a></li>
+          <li><a href="{{ "/categories" | relative_url }}">分类</a></li>
+          <li><a href="{{ "/tags" | relative_url }}">标签</a></li>
+          <li><a href="{{ "/about" | relative_url }}">关于</a></li>
+          <li><a href="{{ "/search" | relative_url }}">搜索</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="content-container">
+      <div class="banner">
+        <img src="{{ "/assets/images/banner.jpg" | relative_url }}" alt="Banner">
+      </div>
+
+      <main class="main-content">
+        {{ content }}
+      </main>
+
+      <footer class="site-footer">
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html> 
