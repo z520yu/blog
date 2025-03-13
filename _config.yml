@@ -6,16 +6,38 @@ baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "https://z520yu.github.io" # the base hostname & protocol for your site
 github_username: z520yu
 
-# Build settings
+# 主题设置
+theme: jekyll-theme-minimal
+
+# 布局设置
+permalink: /:year/:month/:day/:title/
+paginate: 5
+paginate_path: /page:num/
+
+# 社交链接
+social:
+  github: z520yu
+  email: your-email@example.com
+
+# 导航菜单
+navigation:
+  - title: 首页
+    url: /
+  - title: 文章
+    url: /posts/
+  - title: 关于
+    url: /about/
+
+# 构建设置
 markdown: kramdown
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
   - jemoji
+  - jekyll-paginate
 
-# Exclude from processing
+# 排除文件
 exclude:
   - Gemfile
   - Gemfile.lock
